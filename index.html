@@ -3,13 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+        <!-- css -->
     <link rel="stylesheet" href="css/style.css">
+    
     <title>Document</title>
 </head>
-<body>
-    
-    
+    <body>
+    <div id="app">
+        <header>
+            <h1>rubrica telefonica</h1>
+        </header>
+
+        <main>
+            <h3 class="cestino">contatti presenti ()
+                <span>
+                    <i class="fas fa-sort-down"></i>
+                </span>
+            </h3>
+            <section class="contatti presenti">
+                <ul>
+                    <li>ciao ciao 
+                        <span>
+                            <i class="fas fa-info-circle"></i>
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <ul class="scheda-contatto">
+                            <li>nome</li>
+                            <li>cognome</li>
+                            <li>numero</li>
+                        </ul>
+                    </li>
+
+                    <li>ciao ciao 
+                        <span>
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                    </li>
+                </ul>
+            </section>
+
+            <h3 class="cestino">contatti eliminati ()
+                <span>
+                    <i class="fas fa-sort-down"></i>
+                </span>
+            </h3>
+
+            <section class="contatti eliminati">
+                <ul>
+                    <li>ciao
+                        <span>
+                            <i class="fas fa-trash-restore-alt"></i>
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <input type="text" placeholder="nome" v-model="nome">
+            <input type="text" placeholder="cognome" v-model="cognome">
+            <input type="text" placeholder="numero" v-model="numero">
+            <button @click="">aggiungi contatto</button>
+        </footer>
+    </div>
 
     <script src="vue/script.js"></script>
 </body>

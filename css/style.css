@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+    text-transform: capitalize;
+}
+
+
+/* formattazione liste contatti */
+
+.contatti ul li:not(:last-child){
+    border-bottom: 1px solid lightgray;
+}
+
+.contatti ul{
+    background-color: cadetblue;
+    width: 80%;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.contatti > ul li{
+    padding: 5px;
+    text-transform: capitalize;
+    position: relative;
+    font-size: 20px;
+}
+
+.contatti > ul > li{
+    font-size: 25px;
+}
+
+ul li span{
+    position: absolute;
+    right: 2px;
+    padding-right: 5px;
+    font-size: 20px;
+}
+
+.contatti > ul > li:hover{
+    background-color: rgb(153, 192, 194);
+}
+
+/* /formattazione liste contatti */
+
+
+.cestino{
+    font-size: 25px;
+    margin: 15px 5px;
+    text-transform: capitalize;
+}
