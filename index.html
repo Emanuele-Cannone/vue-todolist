@@ -26,15 +26,15 @@
             </h3>
             <section class="contatti presenti">
                 <ul>
-                    <li>ciao ciao 
+                    <li v-for="elementi in contatti"> 
                         <span>
                             <i class="fas fa-info-circle"></i>
                             <i class="fas fa-window-close"></i>
                         </span>
                         <ul class="scheda-contatto">
-                            <li>nome</li>
-                            <li>cognome</li>
-                            <li>numero</li>
+                            <li>{{elementi.nome}}</li>
+                            <li>{{elementi.cognome}}</li>
+                            <li>{{elementi.numero}}</li>
                         </ul>
                     </li>
 
@@ -65,10 +65,10 @@
         </main>
 
         <footer>
-            <input type="text" placeholder="nome" v-model="nome">
-            <input type="text" placeholder="cognome" v-model="cognome">
-            <input type="text" placeholder="numero" v-model="numero">
-            <button @click="">aggiungi contatto</button>
+            <input type="text" placeholder="nome" v-model="nuovoContatto.nome">
+            <input type="text" placeholder="cognome" v-model="nuovoContatto.cognome">
+            <input type="text" placeholder="numero" v-model="nuovoContatto.numero">
+            <button @click="addContatto">aggiungi contatto</button>
         </footer>
     </div>
 

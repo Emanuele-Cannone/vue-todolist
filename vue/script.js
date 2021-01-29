@@ -46,18 +46,20 @@ var app = new Vue ({
             cognome: '',
             numero: ''
         },
-        contatto: {nome, cognome, numero} = this.nuovoContatto
     },
     methods:{
-        
-        // in questo modo destrutturo le informazioni nell'oggetto
-        
+
         // in questo modo cambio il valore delle key in nuovoContatto
-        
-        addContact(nome, cognome, numero) {
-        this.nome.push(nuovoContatto.nome),
-        this.cognome.push(nuovoContatto.cognome),
-        this.numero.push(nuovoContatto.numero)
+        addContatto(){
+            this.contatti.push({
+                nome: this.nuovoContatto.nome,
+                cognome: this.nuovoContatto.cognome,
+                numero: this.nuovoContatto.numero,
+            });
+            // in questo modo svuoto i campi
+            this.nuovoContatto.nome = '';
+            this.nuovoContatto.cognome = '';
+            this.nuovoContatto.numero = '';
         }
-    }
+    },
 });
