@@ -46,6 +46,7 @@ var app = new Vue ({
             cognome: '',
             numero: ''
         },
+        contattiEliminati: []
     },
     methods:{
 
@@ -60,6 +61,11 @@ var app = new Vue ({
             this.nuovoContatto.nome = '';
             this.nuovoContatto.cognome = '';
             this.nuovoContatto.numero = '';
+        },
+        // per eliminare il contatto scelto devo prendere l'index
+        deleteContatto(index, n){
+            this.contattiEliminati.push(...this.contatti);
+            this.contatti.splice(index, n);
         }
     },
 });

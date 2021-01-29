@@ -19,29 +19,25 @@
         </header>
 
         <main>
-            <h3 class="cestino">contatti presenti ()
+            <h3 class="cestino">contatti presenti (index + 1)
                 <span>
                     <i class="fas fa-sort-down"></i>
                 </span>
             </h3>
             <section class="contatti presenti">
                 <ul>
-                    <li v-for="elementi in contatti"> 
+                    <li v-for="(elementi, index) in contatti"> 
+                        <li>Nome: {{elementi.nome}}</li>
+                        <li>Cognome: {{elementi.cognome}}</li>
                         <span>
                             <i class="fas fa-info-circle"></i>
-                            <i class="fas fa-window-close"></i>
+                            <i class="fas fa-window-close" @click="deleteContatto(index, 1)"></i>
                         </span>
                         <ul class="scheda-contatto">
-                            <li>{{elementi.nome}}</li>
-                            <li>{{elementi.cognome}}</li>
-                            <li>{{elementi.numero}}</li>
+                            <li>Nome: {{elementi.nome}}</li>
+                            <li>Cognome: {{elementi.cognome}}</li>
+                            <li>Numero: {{elementi.numero}}</li>
                         </ul>
-                    </li>
-
-                    <li>ciao ciao 
-                        <span>
-                            <i class="fas fa-window-close"></i>
-                        </span>
                     </li>
                 </ul>
             </section>
@@ -54,7 +50,10 @@
 
             <section class="contatti eliminati">
                 <ul>
-                    <li>ciao
+                    <li v-for="elementis in contattiEliminati">
+                        <li>Nome: {{elementi.nome}}</li>
+                        <li>Cognome: {{elementi.cognome}}</li>
+                        <li>Numero: {{elementi.numero}}</li>
                         <span>
                             <i class="fas fa-trash-restore-alt"></i>
                             <i class="fas fa-trash-alt"></i>
