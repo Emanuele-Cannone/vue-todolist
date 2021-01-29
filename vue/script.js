@@ -1,5 +1,5 @@
 // inserire il nuovo todo
-// modificare un todo 
+// modificare un todo FATTO DA ILARIA
 // spostare il todo nel cestino
 // pulsante per spostare tutti i todo nel cestino 
 // ripristinare dal cestino un todo 
@@ -52,6 +52,7 @@ var app = new Vue ({
 
         // in questo modo cambio il valore delle key in nuovoContatto
         addContatto(){
+            // in questo aggiungo un contatto
             this.contatti.push({
                 nome: this.nuovoContatto.nome,
                 cognome: this.nuovoContatto.cognome,
@@ -63,9 +64,38 @@ var app = new Vue ({
             this.nuovoContatto.numero = '';
         },
         // per eliminare il contatto scelto devo prendere l'index
-        deleteContatto(index, n){
-            this.contattiEliminati.push(...this.contatti);
-            this.contatti.splice(index, n);
-        }
-    },
+        deleteContatto(index){
+            console.log(this.contatti[index]);
+            // lo faccio entrare nel cestino
+            this.contattiEliminati.push(this.contatti[index]);
+            // in questo elimino un contatto
+            this.contatti.splice(index,1);
+        },
+        deleteDefinitivo(index){
+            // in questo elimino un contatto definitivamente
+            this.contattiEliminati.splice(index, 1);
+        },
+        ripristinoEliminato(index){
+            // lo faccio rientrare nella lista contatti
+            this.contatti.push(this.contattiEliminati[index]);
+            // lo elimino dalla lista contattiEliminati
+            this.contattiEliminati.splice(index, 1);
+        },
+        eliminaTutto(){
+            if(this.contatti.length > 0){
+            this.contatti.forEach(element => {
+                this.contattiEliminati.push(element);
+            });
+            this.contatti.splice(0);
+            };
+        },
+        eliminaTuttoDefinitivo(n){
+            this.contattiEliminati.splice(n);
+        },
+        modifica(index){
+                this.contatti[index].nome = prompt('modifica nome');
+                this.contatti[index].cognome = prompt('modifica cognome');
+                this.contatti[index].numero = prompt('modifica numero');
+            }
+    }
 });

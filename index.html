@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Vue -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
         <!-- css -->
@@ -19,45 +19,55 @@
         </header>
 
         <main>
-            <h3 class="cestino">contatti presenti ()
+            <h3 class="cestino">contatti presenti ({{contatti.length}})
                 <span>
                     <i class="fas fa-sort-down"></i>
+                </span>
+                <span>
+                    <button @click="eliminaTutto">elimina tutto</button>
                 </span>
             </h3>
             <section class="contatti presenti">
                 <ul>
                     <li v-for="(primoelemento, index) in contatti"> 
-                        <li>Nome: {{primoelemento.nome}}</li>
-                        <!-- <li>Cognome: {{primoelemento.cognome}}</li>
-                        <span>
-                            <i class="fas fa-info-circle"></i>
-                            <i class="fas fa-window-close" @click="deleteContatto(index, 1)"></i>
-                        </span>
-                        <ul class="scheda-contatto">
+                        <ul>
                             <li>Nome: {{primoelemento.nome}}</li>
                             <li>Cognome: {{primoelemento.cognome}}</li>
-                            <li>Numero: {{primoelemento.numero}}</li>
-                        </ul> -->
+                            <span>
+                                <i class="fas fa-info-circle" @click="modifica(index)"></i>
+                                <i class="fas fa-window-close" @click="deleteContatto(index)"></i>
+                            </span>
+                            <ul class="scheda-contatto">
+                                <li>Nome: {{primoelemento.nome}}</li>
+                                <li>Cognome: {{primoelemento.cognome}}</li>
+                                <li>Numero: {{primoelemento.numero}}</li>
+                            </ul>
+                        </ul>
                     </li>
                 </ul>
             </section>
 
-            <h3 class="cestino">contatti eliminati ()
+            <h3 class="cestino">contatti eliminati ({{contattiEliminati.length}})
                 <span>
                     <i class="fas fa-sort-down"></i>
+                </span>
+                <span>
+                    <button @click="eliminaTuttoDefinitivo(0)">eliminaTuttoDefinitivo</button>
                 </span>
             </h3>
 
             <section class="contatti eliminati">
                 <ul>
-                    <li v-for="elementis in contattiEliminati">
-                        <!-- <li>Nome: {{elementis.nome}}</li>
-                        <li>Cognome: {{elementis.cognome}}</li>
-                        <li>Numero: {{elementis.numero}}</li>
-                        <span>
-                            <i class="fas fa-trash-restore-alt"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </span> -->
+                    <li v-for="(elementis, index) in contattiEliminati">
+                        <ul>
+                            <li>Nome: {{elementis.nome}}</li>
+                            <li>Cognome: {{elementis.cognome}}</li>
+                            <li>Numero: {{elementis.numero}}</li>
+                            <span>
+                                <i class="fas fa-trash-restore-alt" @click="ripristinoEliminato(index)"></i>
+                                <i class="fas fa-trash-alt" @click="deleteDefinitivo"></i>
+                            </span>
+                        </ul>
                     </li>
                 </ul>
             </section>
