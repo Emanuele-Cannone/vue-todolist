@@ -16,69 +16,69 @@
     <div id="app">
         <header>
             <h1>rubrica telefonica</h1>
-        </header>
-
-        <main>
-            <h3 class="cestino">contatti presenti ({{contatti.length}})
-                <span>
-                    <i class="fas fa-sort-down"></i>
-                </span>
-                <span>
-                    <button @click="eliminaTutto">elimina tutto</button>
-                </span>
-            </h3>
-            <section class="contatti presenti">
-                <ul>
-                    <li v-for="(primoelemento, index) in contatti"> 
-                        <ul>
-                            <li>Nome: {{primoelemento.nome}}</li>
-                            <li>Cognome: {{primoelemento.cognome}}</li>
-                            <span>
-                                <i class="fas fa-info-circle" @click="modifica(index)"></i>
-                                <i class="fas fa-window-close" @click="deleteContatto(index)"></i>
-                            </span>
-                            <ul class="scheda-contatto">
-                                <li>Nome: {{primoelemento.nome}}</li>
-                                <li>Cognome: {{primoelemento.cognome}}</li>
-                                <li>Numero: {{primoelemento.numero}}</li>
-                            </ul>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-
-            <h3 class="cestino">contatti eliminati ({{contattiEliminati.length}})
-                <span>
-                    <i class="fas fa-sort-down"></i>
-                </span>
-                <span>
-                    <button @click="eliminaTuttoDefinitivo(0)">eliminaTuttoDefinitivo</button>
-                </span>
-            </h3>
-
-            <section class="contatti eliminati">
-                <ul>
-                    <li v-for="(elementis, index) in contattiEliminati">
-                        <ul>
-                            <li>Nome: {{elementis.nome}}</li>
-                            <li>Cognome: {{elementis.cognome}}</li>
-                            <li>Numero: {{elementis.numero}}</li>
-                            <span>
-                                <i class="fas fa-trash-restore-alt" @click="ripristinoEliminato(index)"></i>
-                                <i class="fas fa-trash-alt" @click="deleteDefinitivo"></i>
-                            </span>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-        </main>
-
-        <footer>
+            <h3>aggiungi contatto</h3>
             <input type="text" placeholder="nome" v-model="nuovoContatto.nome">
             <input type="text" placeholder="cognome" v-model="nuovoContatto.cognome">
             <input type="text" placeholder="numero" v-model="nuovoContatto.numero">
             <button @click="addContatto">aggiungi contatto</button>
-        </footer>
+        </header>
+
+        <main>
+            <h3 class="cestino">contatti presenti ({{contatti.length}})
+            <span>
+                <i class="fas fa-sort-down" @click="mostra" :id="bottoneDown"></i>
+                <i class="fas fa-sort-up" @click="nascondi" :id="bottoneUp"></i>
+            </span>
+            </h3>
+                
+                <button class="eliminaTutto" @click="eliminaTutto">elimina tutto</button>
+                
+                <section class="contatti presenti">
+                    <ul :id="mostraContatto">
+                        <li v-for="(primoelemento, index) in contatti"> 
+                            <ul>
+                                <li>Nome: {{primoelemento.nome}}</li>
+                                <li>Cognome: {{primoelemento.cognome}}</li>
+                            <span class="icons">
+                                <i class="fas fa-id-card"></i>
+                                <i class="fas fa-info-circle" @click="modifica(index)"></i>
+                                <i class="fas fa-window-close" @click="deleteContatto(index)"></i>
+                            </span>
+                            <div>
+                                <ul class="scheda-contatto">
+                                    <li>Nome: {{primoelemento.nome}}</li>
+                                    <li>Cognome: {{primoelemento.cognome}}</li>
+                                    <li>Numero: {{primoelemento.numero}}</li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        
+            
+            <h3 class="cestino">contatti eliminati ({{contattiEliminati.length}})</h3>
+                <span>
+                    <button @click="eliminaTuttoDefinitivo(0)">eliminaTuttoDefinitivo</button>
+                </span>
+            
+
+                <section class="contatti eliminati">
+                    <ul>
+                        <li v-for="(elementis, index) in contattiEliminati">
+                            <ul>
+                                <li>Nome: {{elementis.nome}}</li>
+                                <li>Cognome: {{elementis.cognome}}</li>
+                                <li>Numero: {{elementis.numero}}</li>
+                                <span>
+                                    <i class="fas fa-trash-restore-alt" @click="ripristinoEliminato(index)"></i>
+                                    <i class="fas fa-trash-alt" @click="deleteDefinitivo"></i>
+                                </span>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+        </main>
     </div>
 
     <script src="vue/script.js"></script>

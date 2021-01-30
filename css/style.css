@@ -9,8 +9,16 @@ h1{
     text-transform: capitalize;
 }
 
+/* formattazione mostra/nascondi */
+#invisible{
+    display: none;
+}
 
+#visible{
+    display: inline-block;
+}
 /* formattazione liste contatti */
+
 
 .contatti ul li:not(:last-child){
     border-bottom: 1px solid lightgray;
@@ -34,14 +42,15 @@ h1{
     font-size: 25px;
 }
 
-ul li span{
+.icons{
     position: absolute;
     right: 2px;
+    bottom: 20px;
     padding-right: 5px;
     font-size: 20px;
 }
 
-.contatti > ul > li:hover{
+.contatti > ul  li:hover{
     background-color: rgb(153, 192, 194);
 }
 

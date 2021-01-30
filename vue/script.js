@@ -11,8 +11,8 @@ var app = new Vue ({
     data: {
         contatti: [
             {
-                nome: 'papa',
-                cognome: 'francesco',
+                nome: 'paperino',
+                cognome: 'boolean',
                 numero: '123456789'
             },
             {
@@ -46,22 +46,25 @@ var app = new Vue ({
             cognome: '',
             numero: ''
         },
-        contattiEliminati: []
+        contattiEliminati: [],
+        mostraContatto: 'invisible',
+        bottoneDown: 'visible',
+        bottoneUp: 'invisible'
     },
     methods:{
 
-        // in questo modo cambio il valore delle key in nuovoContatto
         addContatto(){
-            // in questo aggiungo un contatto
-            this.contatti.push({
-                nome: this.nuovoContatto.nome,
-                cognome: this.nuovoContatto.cognome,
-                numero: this.nuovoContatto.numero,
-            });
-            // in questo modo svuoto i campi
-            this.nuovoContatto.nome = '';
-            this.nuovoContatto.cognome = '';
-            this.nuovoContatto.numero = '';
+
+                // in questo modo aggiungo un contatto
+                this.contatti.push({
+                    nome: this.nuovoContatto.nome,
+                    cognome: this.nuovoContatto.cognome,
+                    numero: this.nuovoContatto.numero,
+                });
+                // in questo modo svuoto i campi
+                this.nuovoContatto.nome = '';
+                this.nuovoContatto.cognome = '';
+                this.nuovoContatto.numero = '';
         },
         // per eliminare il contatto scelto devo prendere l'index
         deleteContatto(index){
@@ -93,9 +96,20 @@ var app = new Vue ({
             this.contattiEliminati.splice(n);
         },
         modifica(index){
-                this.contatti[index].nome = prompt('modifica nome');
-                this.contatti[index].cognome = prompt('modifica cognome');
-                this.contatti[index].numero = prompt('modifica numero');
-            }
+            this.contatti[index].nome = prompt('modifica nome');
+            this.contatti[index].cognome = prompt('modifica cognome');
+            this.contatti[index].numero = prompt('modifica numero');
+        },
+        mostra(){
+            this.bottoneDown = 'invisible';
+            this.mostraContatto = 'visible';
+            this.bottoneUp = 'visible';
+        },
+        nascondi(){
+            this.mostraContatto = 'invisible';
+            this.bottoneDown = 'visible';
+            this.bottoneUp = 'invisible';
+        }
+      
     }
 });
