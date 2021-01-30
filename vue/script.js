@@ -11,8 +11,8 @@ var app = new Vue ({
     data: {
         contatti: [
             {
-                nome: 'paperino',
-                cognome: 'boolean',
+                nome: 'papa',
+                cognome: 'francesco',
                 numero: '123456789'
             },
             {
@@ -47,9 +47,11 @@ var app = new Vue ({
             numero: ''
         },
         contattiEliminati: [],
-        mostraContatto: 'invisible',
-        bottoneDown: 'visible',
-        bottoneUp: 'invisible'
+        visibilita: false,
+        // mostraLista: 'invisible',
+        // bottoneDown: 'visible',
+        // bottoneUp: 'invisible',
+        mostraDettagli: false
     },
     methods:{
 
@@ -100,16 +102,20 @@ var app = new Vue ({
             this.contatti[index].cognome = prompt('modifica cognome');
             this.contatti[index].numero = prompt('modifica numero');
         },
-        mostra(){
-            this.bottoneDown = 'invisible';
-            this.mostraContatto = 'visible';
-            this.bottoneUp = 'visible';
+        mostraNascondiLista(){
+            if (this.visibilita == false){
+                this.visibilita = true; 
+            } else {
+                this.visibilita = false;
+            }
         },
-        nascondi(){
-            this.mostraContatto = 'invisible';
-            this.bottoneDown = 'visible';
-            this.bottoneUp = 'invisible';
+        mostraNascondiDettagli(){
+            if (this.mostraDettagli == false){
+                this.mostraDettagli = true;
+            } else {
+                this.mostraDettagli = false;
+            }
         }
-      
+
     }
 });

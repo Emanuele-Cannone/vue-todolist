@@ -26,34 +26,36 @@
         <main>
             <h3 class="cestino">contatti presenti ({{contatti.length}})
             <span>
-                <i class="fas fa-sort-down" @click="mostra" :id="bottoneDown"></i>
-                <i class="fas fa-sort-up" @click="nascondi" :id="bottoneUp"></i>
+                <i class="fas fa-sort-up" @click="mostraNascondiLista" v-if="visibilita"></i>
+                <i class="fas fa-sort-down" @click="mostraNascondiLista" v-else></i>
             </span>
             </h3>
                 
+            
+            <section class="contatti presenti">
                 <button class="eliminaTutto" @click="eliminaTutto">elimina tutto</button>
-                
-                <section class="contatti presenti">
-                    <ul :id="mostraContatto">
-                        <li v-for="(primoelemento, index) in contatti"> 
+                <ul v-if='visibilita'>
+                <li v-for="(primoelemento, index) in contatti"> 
                             <ul>
                                 <li>Nome: {{primoelemento.nome}}</li>
                                 <li>Cognome: {{primoelemento.cognome}}</li>
                             <span class="icons">
-                                <i class="fas fa-id-card"></i>
+                                <i class="fas fa-id-card" @click="mostraNascondiDettagli(index)"></i>
                                 <i class="fas fa-info-circle" @click="modifica(index)"></i>
                                 <i class="fas fa-window-close" @click="deleteContatto(index)"></i>
                             </span>
-                            <div>
+                            <span v-if="mostraDettagli">
                                 <ul class="scheda-contatto">
-                                    <li>Nome: {{primoelemento.nome}}</li>
+                                    <li >Nome: {{primoelemento.nome}}</li>
                                     <li>Cognome: {{primoelemento.cognome}}</li>
                                     <li>Numero: {{primoelemento.numero}}</li>
                                 </ul>
-                            </div>
+                            </span>
+                            <span v-else></span>
                         </ul>
                     </li>
                 </ul>
+                <ul v-else></ul>
             </section>
         
             
