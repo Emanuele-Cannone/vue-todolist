@@ -10,11 +10,11 @@ h1{
 }
 
 /* formattazione mostra/nascondi */
-#invisible{
+.invisible{
     display: none;
 }
 
-#visible{
+.visible{
     display: inline-block;
 }
 /* formattazione liste contatti */
@@ -32,7 +32,7 @@ h1{
 }
 
 .contatti > ul li{
-    padding: 5px;
+    /* padding: 5px; */
     text-transform: capitalize;
     position: relative;
     font-size: 20px;
@@ -45,8 +45,6 @@ h1{
 .icons{
     position: absolute;
     right: 2px;
-    bottom: 20px;
-    padding-right: 5px;
     font-size: 20px;
 }
 

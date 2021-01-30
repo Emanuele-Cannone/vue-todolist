@@ -11,8 +11,8 @@ var app = new Vue ({
     data: {
         contatti: [
             {
-                nome: 'papa',
-                cognome: 'francesco',
+                nome: 'paperino',
+                cognome: 'boolean',
                 numero: '123456789'
             },
             {
@@ -48,28 +48,37 @@ var app = new Vue ({
         },
         contattiEliminati: [],
         visibilita: false,
-        // mostraLista: 'invisible',
-        // bottoneDown: 'visible',
-        // bottoneUp: 'invisible',
-        mostraDettagli: false
+        mostraDettagli: false,
+        aggiungi: false,
+        input: '',
+        aaainput: ''
+        
+
     },
     methods:{
-
         addContatto(){
+            if (this.nuovoContatto.nome.length > 0 &&
+                this.nuovoContatto.cognome.length > 0 &&
+                this.nuovoContatto.numero.length > 0){
+
+                    this.contatti.push({
+                        nome: this.nuovoContatto.nome,
+                        cognome: this.nuovoContatto.cognome,
+                        numero: this.nuovoContatto.numero,
+                    });
+                    // in questo modo svuoto i campi
+                    this.nuovoContatto.nome = '';
+                    this.nuovoContatto.cognome = '';
+                    this.nuovoContatto.numero = '';
+                    
 
                 // in questo modo aggiungo un contatto
-                this.contatti.push({
-                    nome: this.nuovoContatto.nome,
-                    cognome: this.nuovoContatto.cognome,
-                    numero: this.nuovoContatto.numero,
-                });
-                // in questo modo svuoto i campi
-                this.nuovoContatto.nome = '';
-                this.nuovoContatto.cognome = '';
-                this.nuovoContatto.numero = '';
+            } else {
+                alert('completa tutti i campi')
+            }
         },
-        // per eliminare il contatto scelto devo prendere l'index
         deleteContatto(index){
+            // per eliminare il contatto scelto devo prendere l'index
             console.log(this.contatti[index]);
             // lo faccio entrare nel cestino
             this.contattiEliminati.push(this.contatti[index]);
@@ -102,6 +111,15 @@ var app = new Vue ({
             this.contatti[index].cognome = prompt('modifica cognome');
             this.contatti[index].numero = prompt('modifica numero');
         },
+        nascondiInput(index){
+            if (this.aaainput == 'visible'){
+                this.aaainput = 'invisible'
+            } 
+            this.contatti[index].nome = this.input;
+            this.input = ''
+
+        
+        },
         mostraNascondiLista(){
             if (this.visibilita == false){
                 this.visibilita = true; 
@@ -110,12 +128,19 @@ var app = new Vue ({
             }
         },
         mostraNascondiDettagli(){
-            if (this.mostraDettagli == false){
+            if (this.mostraDettagli == false) {
                 this.mostraDettagli = true;
             } else {
                 this.mostraDettagli = false;
             }
-        }
 
+        },
+        mostraNascondiAdd(){
+            if (this.aggiungi == false) {
+                this.aggiungi = true;
+            } else {
+                this.aggiungi = false;
+            }
+        }
     }
 });

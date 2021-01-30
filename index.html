@@ -16,11 +16,13 @@
     <div id="app">
         <header>
             <h1>rubrica telefonica</h1>
-            <h3>aggiungi contatto</h3>
-            <input type="text" placeholder="nome" v-model="nuovoContatto.nome">
-            <input type="text" placeholder="cognome" v-model="nuovoContatto.cognome">
-            <input type="text" placeholder="numero" v-model="nuovoContatto.numero">
-            <button @click="addContatto">aggiungi contatto</button>
+            <h3>aggiungi contatto <i @click="mostraNascondiAdd" class="fas fa-plus-circle"></i></h3>
+            <div v-if="aggiungi">
+                <input type="text" placeholder="nome" v-model="nuovoContatto.nome">
+                <input type="text" placeholder="cognome" v-model="nuovoContatto.cognome">
+                <input type="text" placeholder="numero" v-model="nuovoContatto.numero">
+                <button @click="addContatto">aggiungi contatto</button>
+            </div>
         </header>
 
         <main>
@@ -30,32 +32,33 @@
                 <i class="fas fa-sort-down" @click="mostraNascondiLista" v-else></i>
             </span>
             </h3>
+            
                 
             
             <section class="contatti presenti">
                 <button class="eliminaTutto" @click="eliminaTutto">elimina tutto</button>
                 <ul v-if='visibilita'>
-                <li v-for="(primoelemento, index) in contatti"> 
-                            <ul>
-                                <li>Nome: {{primoelemento.nome}}</li>
-                                <li>Cognome: {{primoelemento.cognome}}</li>
-                            <span class="icons">
-                                <i class="fas fa-id-card" @click="mostraNascondiDettagli(index)"></i>
-                                <i class="fas fa-info-circle" @click="modifica(index)"></i>
-                                <i class="fas fa-window-close" @click="deleteContatto(index)"></i>
+                    <li v-for="(primoelemento, index) in contatti"> 
+                        <ul>
+                            <li>{{primoelemento.nome}} {{primoelemento.cognome}}
+                                <span class="icons">
+                                    <i class="fas fa-id-card" @click="mostraNascondiDettagli"></i>
+                                    <i class="fas fa-info-circle" @click="modifica(index)"></i>
+                                    <i class="fas fa-window-close" @click="deleteContatto(index)"></i>
+                                </li>
                             </span>
                             <span v-if="mostraDettagli">
                                 <ul class="scheda-contatto">
-                                    <li >Nome: {{primoelemento.nome}}</li>
+                                    <li>Nome: {{primoelemento.nome}}</li>
                                     <li>Cognome: {{primoelemento.cognome}}</li>
                                     <li>Numero: {{primoelemento.numero}}</li>
                                 </ul>
                             </span>
-                            <span v-else></span>
+                            <!-- <span v-else></span> -->
                         </ul>
                     </li>
                 </ul>
-                <ul v-else></ul>
+                <!-- <ul v-else></ul> -->
             </section>
         
             
