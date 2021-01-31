@@ -16,8 +16,8 @@ var app = new Vue ({
                 numero: '123456789'
             },
             {
-                nome: 'lady',
-                cognome: 'gaga',
+                nome: 'pluto',
+                cognome: 'boolean',
                 numero: '123456789'
             },
             {
@@ -36,8 +36,8 @@ var app = new Vue ({
                 numero: '123456789'
             },
             {
-                nome: 'paola',
-                cognome: 'zia',
+                nome: 'cristina',
+                cognome: 'boolean',
                 numero: '123456789'
             },
         ],
@@ -49,9 +49,7 @@ var app = new Vue ({
         contattiEliminati: [],
         visibilita: false,
         mostraDettagli: false,
-        aggiungi: false,
-        input: '',
-        aaainput: ''
+        aggiungi: false
         
 
     },
