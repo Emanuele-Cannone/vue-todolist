@@ -11,44 +11,51 @@ var app = new Vue ({
     data: {
         contatti: [
             {
-                nome: 'paperino',
-                cognome: 'boolean',
-                numero: '123456789'
+                nome: 'simone',
+                cognome: 'piacentini',
+                numero: '123456789',
+                mostraDettagli: false
             },
             {
-                nome: 'pluto',
-                cognome: 'boolean',
-                numero: '123456789'
+                nome: 'danilo',
+                cognome: 'appolloni',
+                numero: '123456789',
+                mostraDettagli: false
             },
             {
-                nome: 'fiorella',
-                cognome: 'milano',
-                numero: '123456789'
+                nome: 'priscilla',
+                cognome: 'lilli',
+                numero: '123456789',
+                mostraDettagli: false
             },
             {
-                nome: 'pippo',
-                cognome: 'boolean',
-                numero: '123456789'
+                nome: 'davide',
+                cognome: 'corsini',
+                numero: '123456789',
+                mostraDettagli: false
             },
             {
-                nome: 'produzione',
-                cognome: 'orticola',
-                numero: '123456789'
+                nome: 'cristiano',
+                cognome: 'tarconi',
+                numero: '123456789',
+                mostraDettagli: false
             },
             {
                 nome: 'cristina',
                 cognome: 'boolean',
-                numero: '123456789'
+                numero: '123456789',
+                mostraDettagli: false
             },
         ],
         nuovoContatto: {
             nome: '',
             cognome: '',
-            numero: ''
+            numero: '',
+            mostraDettagli: false
         },
+
         contattiEliminati: [],
         visibilita: false,
-        mostraDettagli: false,
         aggiungi: false
         
 
@@ -77,22 +84,24 @@ var app = new Vue ({
         },
         deleteContatto(index){
             // per eliminare il contatto scelto devo prendere l'index
-            console.log(this.contatti[index]);
             // lo faccio entrare nel cestino
             this.contattiEliminati.push(this.contatti[index]);
             // in questo elimino un contatto
             this.contatti.splice(index,1);
         },
+
         deleteDefinitivo(index){
             // in questo elimino un contatto definitivamente
             this.contattiEliminati.splice(index, 1);
         },
+
         ripristinoEliminato(index){
             // lo faccio rientrare nella lista contatti
             this.contatti.push(this.contattiEliminati[index]);
             // lo elimino dalla lista contattiEliminati
             this.contattiEliminati.splice(index, 1);
         },
+        
         eliminaTutto(){
             if(this.contatti.length > 0){
             this.contatti.forEach(element => {
@@ -101,23 +110,17 @@ var app = new Vue ({
             this.contatti.splice(0);
             };
         },
+
         eliminaTuttoDefinitivo(n){
             this.contattiEliminati.splice(n);
         },
+
         modifica(index){
             this.contatti[index].nome = prompt('modifica nome');
             this.contatti[index].cognome = prompt('modifica cognome');
             this.contatti[index].numero = prompt('modifica numero');
         },
-        nascondiInput(index){
-            if (this.aaainput == 'visible'){
-                this.aaainput = 'invisible'
-            } 
-            this.contatti[index].nome = this.input;
-            this.input = ''
 
-        
-        },
         mostraNascondiLista(){
             if (this.visibilita == false){
                 this.visibilita = true; 
@@ -125,20 +128,24 @@ var app = new Vue ({
                 this.visibilita = false;
             }
         },
-        mostraNascondiDettagli(){
-            if (this.mostraDettagli == false) {
-                this.mostraDettagli = true;
+
+        mostraNascondiDettagli(index){
+            if (this.contatti[index].mostraDettagli == false) {
+                this.contatti[index].mostraDettagli = true;
             } else {
-                this.mostraDettagli = false;
+                this.contatti[index].mostraDettagli = false;
             }
 
+            console.log(index);
+            console.log(this.contatti[index].mostraDettagli);
         },
+
         mostraNascondiAdd(){
             if (this.aggiungi == false) {
                 this.aggiungi = true;
             } else {
                 this.aggiungi = false;
             }
-        }
+        },
     }
 });

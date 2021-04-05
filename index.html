@@ -9,19 +9,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
         <!-- css -->
     <link rel="stylesheet" href="css/style.css">
+        <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
     
     <title>Document</title>
 </head>
     <body>
-    <div id="app">
-        <header>
+    <div id="app" class="container">
+        <header class="d-flex flex-column justify-content-center">
             <h1>rubrica telefonica</h1>
-            <h3>aggiungi contatto <i @click="mostraNascondiAdd" class="fas fa-plus-circle"></i></h3>
-            <div v-if="aggiungi">
+            <button type="button" class="btn btn-success" @click="mostraNascondiAdd">aggiungi contatto</button>
+            <div v-if="aggiungi" class="mx-auto">
                 <input type="text" placeholder="nome" v-model="nuovoContatto.nome">
                 <input type="text" placeholder="cognome" v-model="nuovoContatto.cognome">
                 <input type="text" placeholder="numero" v-model="nuovoContatto.numero">
-                <button @click="addContatto">aggiungi contatto</button>
+                <button type="button" class="btn btn-info" @click="addContatto">aggiungi contatto</button>
             </div>
         </header>
 
@@ -36,52 +39,49 @@
                 
             
             <section class="contatti presenti">
-                <button class="eliminaTutto" @click="eliminaTutto">elimina tutto</button>
-                <ul v-if='visibilita'>
-                    <li v-for="(primoelemento, index) in contatti"> 
-                        <ul>
-                            <li>{{primoelemento.nome}} {{primoelemento.cognome}}
-                                <span class="icons">
-                                    <i class="fas fa-id-card" @click="mostraNascondiDettagli"></i>
-                                    <i class="fas fa-info-circle" @click="modifica(index)"></i>
-                                    <i class="fas fa-window-close" @click="deleteContatto(index)"></i>
-                                </li>
-                            </span>
-                            <span v-if="mostraDettagli">
-                                <ul class="scheda-contatto">
-                                    <li>Nome: {{primoelemento.nome}}</li>
-                                    <li>Cognome: {{primoelemento.cognome}}</li>
-                                    <li>Numero: {{primoelemento.numero}}</li>
-                                </ul>
-                            </span>
-                            <span v-else></span>
-                        </ul>
-                    </li>
-                </ul>
-                <ul v-else></ul>
+                <button type="button" class="btn btn-danger text-capitalize" @click="eliminaTutto()">elimina contatti</button>
+                <div v-if='visibilita'>
+                    <div v-for="(element, index) in contatti"> 
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-capitalize">{{ element.nome }} {{element.cognome}} </h5>
+                            </div>
+                            <div v-if="contatti[index].mostraDettagli">
+                                <h6 class="card-subtitle mb-2 text-muted">Nome: {{element.nome}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Cognome: {{element.cognome}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Numero: {{element.numero}}</h6>
+                            </div>
+                            <div class="d-flex">
+                                <a href="#" @click="mostraNascondiDettagli(index)" class="card-link text-capitalize">mostra dettagli</a>
+                                <a href="#" @click="modifica(index)" class="card-link text-capitalize">modifica</a>
+                                <a href="#" @click="deleteContatto(index)" class="card-link text-capitalize">elimina</a>
+                            </div>
+                        </div>
+                        <div v-else></div>
+                    </div>
+                </div>
+                <div v-else></div>
             </section>
         
             
             <h3 class="cestino">contatti eliminati ({{contattiEliminati.length}})</h3>
                 <span>
-                    <button @click="eliminaTuttoDefinitivo(0)">eliminaTuttoDefinitivo</button>
+                    <button type="button" class="btn btn-danger text-capitalize" @click="eliminaTuttoDefinitivo(0)">svuota cestino</button>
                 </span>
             
 
                 <section class="contatti eliminati">
-                    <ul>
-                        <li v-for="(elementis, index) in contattiEliminati">
-                            <ul>
-                                <li>Nome: {{elementis.nome}}</li>
-                                <li>Cognome: {{elementis.cognome}}</li>
-                                <li>Numero: {{elementis.numero}}</li>
-                                <span>
-                                    <i class="fas fa-trash-restore-alt" @click="ripristinoEliminato(index)"></i>
-                                    <i class="fas fa-trash-alt" @click="deleteDefinitivo"></i>
-                                </span>
-                            </ul>
-                        </li>
-                    </ul>
+                        <div v-for="(elementis, index) in contattiEliminati" class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Nome: {{elementis.nome}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Cognome: {{elementis.cognome}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Numero: {{elementis.numero}}</h6>
+                                <div class="d-flex">
+                                    <a href="#" @click="ripristinoEliminato(index)" class="card-link text-capitalize">ripristina</a>
+                                    <a href="#" @click="deleteDefinitivo" class="card-link text-capitalize">elimina definitivamente</a>
+                                </div>
+                            </div>
+                        </div>
                 </section>
         </main>
     </div>
